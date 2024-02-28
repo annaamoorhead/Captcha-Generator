@@ -1,8 +1,13 @@
-'''
-Created on Feb 26, 2020
+# Name:Anna Moorhead
+# email: moorheaa@mail.uc.edu
+# Assignment Number: Assignment 07
+# Due Date: February 28, 2024
+# Course/Section: IS 4010 - 001
+# Semester/Year: Spring 2024
+# Brief Description of the assignment: generating/ altering a Captcha function
+# Citations:,
+# Anything else that's relevant: 
 
-@author: nicomp
-'''
 import random
 from PIL import Image, ImageFilter, ImageDraw, ImageFont
 
@@ -32,7 +37,7 @@ def generate_captcha():
     Generate a captcha
     :return: A tuple (image, captcha string encoded in the image)
     '''
-    captcha_string = generate_random_string(5)
+    captcha_string = generate_random_string(6)
 #   print(">" + captcha_string + "<")
     captcha_image = Image.new("RGBA", (400, 200), (default_color_red,default_color_green,default_color_blue))
     draw = ImageDraw.Draw(captcha_image, "RGBA")
@@ -40,13 +45,14 @@ def generate_captcha():
         draw_random_ellipse(draw)
 
     fontStyle = ImageFont.truetype("Aaargh.ttf", 48)     # font must be in the same folder as the .py file. 
+    anotherFontStyle= ImageFont.truetype("BooksAndPens-1jGDZ.otf", 48)
 
     # Arbitrary starting co-ordinates for the text we will write
     x = 10 + random.randrange(0, 100, 1)
     y = 79 + random.randrange(-10, 10, 1)
     for letter in captcha_string:
 #       print(letter)
-        draw.text((x, y), letter, (0,0,0),font=fontStyle)    # Write in black
+        draw.text((x, y), letter, (0,0,0),font=fontStyle or anotherFontStyle)    # Write in black
         x = x + 35
         y = y +  random.randrange(-10, 10, 1)
     
